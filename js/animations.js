@@ -280,7 +280,7 @@
        6. SCROLL REVEAL (Experience + general)
        --------------------------------------------------- */
     const revealElements = document.querySelectorAll(
-        ".section__header, .award_section, .about__grid, .award, .projects__grid, .notes, .services__grid, .statistics__grid, .testimonials__slider, .contact__grid"
+        ".section__header, .award_section, .about__grid, .award, .notes, .services__grid, .statistics__grid, .testimonials__slider, .contact__grid"
     );
 
     if (revealElements.length > 0) {
