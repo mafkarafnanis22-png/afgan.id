@@ -1,0 +1,1310 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Portfolio pribadi developer yang membangun website modern, responsive, dan interaktif dengan fokus pada pengalaman pengguna.">
+    <meta name="author" content="Raka Wijaya">
+    <meta name="theme-color" content="#0a0a0f">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Raka Wijaya — Web Developer">
+    <meta property="og:description"
+        content="Portfolio pribadi developer yang membangun website modern, responsive, dan interaktif.">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="id_ID">
+
+    <title>afgan | portfolio</title>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/sertif.css">
+
+    <!-- Favicon tema terang -->
+    <link rel="icon" type="image/png" href="assets/icons/logo.gelap.png" media="(prefers-color-scheme: light)">
+
+    <!-- Favicon tema gelap -->
+    <link rel="icon" type="image/png" href="assets/icons/logo.terang.png" media="(prefers-color-scheme: dark)">
+</head>
+
+<body>
+
+    <!-- ==================== PRELOADER ==================== -->
+    <div id="preloader" class="preloader" aria-hidden="true">
+        <div class="preloader__inner">
+            <span class="preloader__logo">AFGAN</span>
+            <div class="preloader__bar">
+                <div class="preloader__progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== NAVBAR ==================== -->
+    <header class="header">
+        <nav class="navbar" id="navbar" aria-label="Navigasi utama">
+            <div class="navbar__container">
+                <!-- Kiri: logo -->
+                <a href="#home" class="navbar__logo" aria-label="Beranda">
+                    <span class="navbar__logo-mark">A</span>
+                    <span class="navbar__logo-text">afgn.dev</span>
+                </a>
+
+                <!-- Tengah: menu -->
+                <ul class="navbar__menu" id="nav-menu" role="menubar">
+                    <li role="none"><a href="#home" class="navbar__link active" role="menuitem">Home</a></li>
+                    <li role="none"><a href="#about" class="navbar__link" role="menuitem">About</a></li>
+                    <li role="none"><a href="#award" class="navbar__link" role="menuitem">Award</a></li>
+                    <li role="none"><a href="#projects" class="navbar__link" role="menuitem">Resources</a></li>
+                    <li role="none"><a href="#notes" class="navbar__link" role="menuitem">Notes</a></li>
+                    <li role="none"><a href="#contact" class="navbar__link" role="menuitem">Contact</a></li>
+                </ul>
+
+                <!-- Kanan: status + CTA + hamburger -->
+                <div class="navbar__actions">
+                    <span class="navbar__status">
+                        <span class="navbar__status-dot" aria-hidden="true"></span>
+                        Available
+                    </span>
+
+                    <a href="#contact" class="navbar__cta" aria-label="Hubungi saya">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M7 17L17 7M8 7h9v9" />
+                        </svg>
+                    </a>
+
+                    <button class="navbar__toggle" id="nav-toggle" aria-label="Buka menu navigasi" aria-expanded="false"
+                        aria-controls="nav-menu">
+                        <span class="navbar__toggle-line"></span>
+                        <span class="navbar__toggle-line"></span>
+                        <span class="navbar__toggle-line"></span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- kursor -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-ring"></div>
+
+    <main>
+
+        <!-- ==================== HERO ==================== -->
+        <section id="home" class="hero" aria-label="Bagian pengenalan">
+            <div class="hero__bg" aria-hidden="true">
+                <div class="hero__grid"></div>
+                <div class="hero__orb hero__orb--1"></div>
+                <div class="hero__orb hero__orb--2"></div>
+                <div class="hero__particles" id="particles"></div>
+            </div>
+
+            <div class="container hero__container">
+                <!-- Kolom kiri -->
+                <div class="hero__content">
+                    <p class="hero__greeting">Hello, I'm</p>
+                    <h1 class="hero__name">Muhammad Afkar Afnani Syaiful</h1>
+                    <p class="hero__profession">
+                        <span class="hero__typing" id="typing-text"></span>
+                        <span class="hero__cursor" aria-hidden="true">|</span>
+                    </p>
+                    <p class="hero__description">
+                        Selamat datang di ruang digital saya, tempat saya berbagi karya, pengalaman, perjalanan belajar,
+                        dan berbagai ilmu yang telah saya kerjakan.
+                    </p>
+
+                    <div class="hero__actions">
+                        <a href="#projects" class="btn btn--primary">View My Work</a>
+                        <a href="#contact" class="btn btn--outline">Let's Talk</a>
+                    </div>
+
+                    <div class="hero__social">
+                        <a href="https://github.com/mafkarafnanis22-png" target="_blank" rel="noopener noreferrer"
+                            class="hero__social-link" aria-label="GitHub">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <path
+                                    d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.387.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.09-.745.083-.73.083-.73 1.205.085 1.84 1.237 1.84 1.237 1.07 1.834 2.807 1.304 3.492.997.108-.775.418-1.305.76-1.605-2.665-.305-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.605-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12z" />
+                            </svg>
+                        </a>
+                        <a href="https://www.instagram.com/rxl.gnn?stkn=MTBxb3RsdG9saGd6dQ==" target="_blank"
+                            rel="noopener noreferrer" class="hero__social-link" aria-label="Instagram">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <path
+                                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+                            </svg>
+                        </a>
+                        <a href="https://www.tiktok.com/@mafkarafnanis?_r=1&_t=ZS-9ANveEdm55w" target="_blank"
+                            rel="noopener noreferrer" class="hero__social-link" aria-label="TikTok">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <path
+                                    d="M12.525.02c1.31-.02 2.61-.01 3.91-.02c.08 1.53.63 3.09 1.75 4.17c1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97c-.57-.26-1.1-.59-1.62-.93c-.01 2.92.01 5.84-.02 8.75c-.08 1.4-.54 2.79-1.35 3.94c-1.31 1.92-3.58 3.17-5.91 3.21c-1.43.08-2.86-.31-4.08-1.03c-2.02-1.19-3.44-3.37-3.65-5.71c-.02-.5-.03-1-.01-1.49c.18-1.9 1.12-3.72 2.58-4.96c1.66-1.44 3.98-2.13 6.15-1.72c.02 1.48-.04 2.96-.04 4.44c-.99-.32-2.15-.23-3.02.37c-.63.41-1.11 1.04-1.36 1.75c-.21.51-.15 1.07-.14 1.61c.24 1.64 1.82 3.02 3.5 2.87c1.12-.01 2.19-.66 2.77-1.61c.19-.33.4-.67.41-1.06c.1-1.79.06-3.57.07-5.36c.01-4.03-.01-8.05.02-12.07" />
+                            </svg>
+                        </a>
+                        <a href="mailto:afkarafnani57@gmail.com" class="hero__social-link" aria-label="Email">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <path
+                                    d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Kolom kanan: kartu (sekarang DI DALAM container) -->
+                <div class="hero__visual" id="tilt-wrap">
+                    <div class="float-wrap">
+                        <div class="tilt-card" id="tilt-card">
+                            <div class="tilt-card__bar">
+                                <span></span><span></span><span></span>
+                                <em>myprovil.uraex</em>
+                            </div>
+
+                            <div class="tilt-card__photo">
+                                <img src="assets/images/gan.6.jpeg" alt="Foto profil" loading="eager">
+                                <span class="tilt-card__scan" aria-hidden="true"></span>
+                                <span class="tilt-card__glare" aria-hidden="true"></span>
+                            </div>
+
+                            <div class="tilt-card__meta">
+                                <strong>Afgannn</strong>
+                                <span>SMKN 1 BLEGA</span>
+                            </div>
+
+                            <span class="chip chip--a">afgan</span>
+                            <span class="chip chip--b">gan</span>
+                            <span class="chip chip--c">af</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <a href="#about" class="hero__scroll" aria-label="Scroll ke About">
+                <span class="hero__scroll-text">Scroll</span>
+                <span class="hero__scroll-icon" aria-hidden="true"></span>
+            </a>
+        </section>
+        <!-- ================ -->
+
+        <a href="#about" class="hero__scroll" aria-label="Scroll ke About">
+            <span class="hero__scroll-text">Scroll</span>
+            <span class="hero__scroll-icon" aria-hidden="true"></span>
+        </a>
+        </section>
+
+        <!-- ===================================================== -->
+        <!-- ===== BAGIAN WIDGET: salin HTML ini (tombol + overlay) ke sebelum </body> ===== -->
+        <button id="fh-open" type="button" aria-label="Buka efek jaringan wajah dan tangan"
+            title="Efek jaringan wajah dan tangan">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+                <circle cx="12" cy="5" r="2" fill="currentColor" />
+                <circle cx="5" cy="13" r="2" fill="currentColor" />
+                <circle cx="19" cy="13" r="2" fill="currentColor" />
+                <circle cx="9" cy="20" r="2" fill="currentColor" />
+                <circle cx="16" cy="20" r="2" fill="currentColor" />
+                <path d="M12 7 5 11M12 7l7 4M5 15l4 3M19 15l-3 3M9 20h5M5 13h12" />
+            </svg>
+        </button>
+
+        <!-- ==================== ABOUT ==================== -->
+        <section id="about" class="about section" aria-labelledby="about-title">
+            <div class="container">
+                <header class="section__header">
+                    <p class="section__subtitle">Get to know me</p>
+                    <h2 id="about-title" class="section__title">About Me</h2>
+                </header>
+
+                <div class="about__grid">
+                    <div class="about__image-wrapper">
+                        <div class="about__image">
+                            <!-- Ganti src dengan foto profilmu -->
+                            <img src="assets/images/gan.3.jpeg" alt="Foto profil Raka Wijaya" width="400" height="500"
+                                loading="lazy">
+                        </div>
+                        <div class="about__image-decoration" aria-hidden="true"></div>
+                    </div>
+
+                    <div class="about__content">
+                        <h3 class="about__name">I'am afgan</h3>
+                        <p class="about__role">Tech Enthusiast | Sport Enthusiast</p>
+                        <p class="about__text">
+                            Saya adalah M. Afkar Afnani S yang akrab disapa Afgan. Saya gemar di bidang teknologi
+                            sekaligus menyukai olahraga. Bagi saya, keduanya menjadi cara untuk terus berkembang.
+                        </p>
+                        <p class="about__text">
+                            Selain mendalami teknologi, saya juga senang berolahraga untuk menjaga kebugaran, melatih
+                            disiplin, dan membangun semangat agar terus berkembang dalam setiap hal yang saya tekuni.
+                        </p>
+
+                        <ul class="about__info">
+                            <li><span class="about__info-label">Nama</span> <span>afgan</span></li>
+                            <li><span class="about__info-label">Email</span> <a
+                                    href="mailto:hello@example.com">afkarafnani57@gmail.com</a></li>
+                            <li><span class="about__info-label">Lokasi</span> <span>Indonesia</span></li>
+                            <li><span class="about__info-label">Status</span> <span class="about__status">Available for
+                                    work</span></li>
+                        </ul>
+
+                        <div class="about__stats">
+                            <div class="about__stat">
+                                <span class="about__stat-number" data-target="3">0</span>
+                                <span class="about__stat-suffix">+</span>
+                                <span class="about__stat-label">Years Learning</span>
+                            </div>
+                            <div class="about__stat">
+                                <span class="about__stat-number" data-target="20">0</span>
+                                <span class="about__stat-suffix">+</span>
+                                <span class="about__stat-label">Growth Mindset</span>
+                            </div>
+                            <div class="about__stat">
+                                <span class="about__stat-number" data-target="35">0</span>
+                                <span class="about__stat-suffix">+</span>
+                                <span class="about__stat-label">Core Interests</span>
+                            </div>
+                            <div class="about__stat">
+                                <span class="about__stat-number" data-target="100">0</span>
+                                <span class="about__stat-suffix">%</span>
+                                <span class="about__stat-label">Passion to Learn</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== AWARD / SERTIFIKAT ==================== -->
+        <section id="award" class="award section" aria-labelledby="award-title">
+            <div class="container">
+                <header class="section__header">
+                    <p class="section__subtitle">ACHIEVEMENT</p>
+                    <h2 id="award-title" class="section__title">Award & Certificate</h2>
+                    <p class="section__desc">
+
+                    </p>
+                </header>
+
+                <div class="award__grid" id="award-grid">
+                    <!-- Card 1 -->
+                    <article class="award-card" data-award>
+                        <div class="award-card__image">
+                            <img src="assets/images/j1.kejur.png" alt="Sertifikat Web Development" loading="lazy">
+                            <div class="award-card__overlay">
+                                <button class="award-card__preview-btn" aria-label="Preview sertifikat">
+                                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                                        <circle cx="12" cy="12" r="3" />
+                                    </svg>
+                                    Preview
+                                </button>
+                            </div>
+                        </div>
+                        <div class="award-card__body">
+                            <h3 class="award-card__title">Win 1 Three Star Kejurprov</h3>
+                            <p class="award-card__desc">
+                                Kejuaraan provinsi Jawa Timur Cabang Olahraga Kabaddi Pada tanggal 20 - 22 Desember
+                                2024.
+                            </p>
+                            <span class="award-card__meta">2024 · Kabaddi</span>
+                        </div>
+                    </article>
+
+                    <!-- Card 2 -->
+                    <article class="award-card" data-award>
+                        <div class="award-card__image">
+                            <img src="assets/images/k2.surabaya.png" alt="Sertifikat UI/UX Design" loading="lazy">
+                            <div class="award-card__overlay">
+                                <button class="award-card__preview-btn" aria-label="Preview sertifikat">
+                                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                                        <circle cx="12" cy="12" r="3" />
+                                    </svg>
+                                    Preview
+                                </button>
+                            </div>
+                        </div>
+                        <div class="award-card__body">
+                            <h3 class="award-card__title">Win 2 KU-23 Piala Walikota Surabaya</h3>
+                            <p class="award-card__desc">
+                                Kejuaraan Piala Walikota Surabaya Cabang Olahraga Kabaddi Pada Tanggal 26 - 27 April
+                                2025.
+                            </p>
+                            <span class="award-card__meta">2025 · Kabaddi</span>
+                        </div>
+                    </article>
+
+                    <!-- Card 3 -->
+                    <article class="award-card" data-award>
+                        <div class="award-card__image">
+                            <img src="assets/images/k3.mojo.png" alt="Sertifikat JavaScript" loading="lazy">
+                            <div class="award-card__overlay">
+                                <button class="award-card__preview-btn" aria-label="Preview sertifikat">
+                                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                                        <circle cx="12" cy="12" r="3" />
+                                    </svg>
+                                    Preview
+                                </button>
+                            </div>
+                        </div>
+                        <div class="award-card__body">
+                            <h3 class="award-card__title">Win 3 Seven For Five Piala Bupati Mojokerto</h3>
+                            <p class="award-card__desc">
+                                Kejuaraan Piala Bupati Mojokerto Cabang Olahraga Kabaddi yang di selenggarakan di GOR
+                                Gajah Mada Pada tanggal 7 - 9 November 2025.
+                            </p>
+                            <span class="award-card__meta">2025 · Kabaddi</span>
+                        </div>
+                    </article>
+
+                    <!-- Tambahkan card lain sesuai kebutuhan -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Modal Preview -->
+        <div class="award-modal" id="award-modal" hidden>
+            <div class="award-modal__backdrop" data-close-modal></div>
+            <div class="award-modal__content">
+                <button class="award-modal__close" data-close-modal aria-label="Tutup">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18" />
+                        <line x1="6" y1="6" x2="18" y2="18" />
+                    </svg>
+                </button>
+                <img class="award-modal__img" id="award-modal-img" src="" alt="Preview sertifikat">
+                <div class="award-modal__info">
+                    <h3 class="award-modal__title" id="award-modal-title"></h3>
+                    <p class="award-modal__desc" id="award-modal-desc"></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== PROJECTS / RESOURCES ==================== -->
+        <section id="projects" class="projects section" aria-labelledby="projects-title">
+            <div class="container">
+                <header class="section__header">
+                    <p class="section__subtitle">STUDY COLLECTION</p>
+                    <h2 id="projects-title" class="section__title">Resources</h2>
+                </header>
+
+                <div class="projects__filters" role="tablist" aria-label="Filter kategori materi">
+                    <button class="projects__filter active" data-filter="all" role="tab"
+                        aria-selected="true">All</button>
+                    <button class="projects__filter" data-filter="autentikasi" role="tab"
+                        aria-selected="false">Autentikasi</button>
+                    <button class="projects__filter" data-filter="database" role="tab"
+                        aria-selected="false">Database</button>
+                    <button class="projects__filter" data-filter="fundamental" role="tab"
+                        aria-selected="false">Fundamental</button>
+                    <button class="projects__filter" data-filter="oop" role="tab" aria-selected="false">OOP</button>
+                    <button class="projects__filter" data-filter="python" role="tab"
+                        aria-selected="false">Python</button>
+                    <button class="projects__filter" data-filter="rest" role="tab" aria-selected="false">REST</button>
+                </div>
+
+                <div class="projects__grid" id="projects-grid">
+
+                    <!-- ==================== AUTENTIKASI ==================== -->
+                    <article class="project-card" data-category="autentikasi" data-id="1">
+                        <div class="project-card__image">
+                            <img src="assets/icons/autentikasi/a.5.png" alt="Autentikasi API" loading="lazy" width="600"
+                                height="400">
+                            <div class="project-card__overlay">
+                                <button class="project-card__view" data-project="1" aria-label="Lihat detail">View
+                                    Details</button>
+                            </div>
+                        </div>
+                        <div class="project-card__body">
+                            <h3 class="project-card__title">Autentikasi API</h3>
+                            <p class="project-card__desc">Materi lengkap tentang Autentikasi API.</p>
+                            <ul class="project-card__tech">
+                                <li>PowerPoint</li>
+                                <li>API</li>
+                                <li>Auth</li>
+                            </ul>
+                            <div class="project-card__links">
+                                <a href="assets/material/Autentikasi/Autentikasi_API.pptx" class="project-card__link"
+                                    download>Download</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="project-card" data-category="autentikasi" data-id="2">
+                        <div class="project-card__image">
+                            <img src="assets/icons/autentikasi/a4.png" alt="CRUD Toko Laravel" loading="lazy"
+                                width="600" height="400">
+                            <div class="project-card__overlay">
+                                <button class="project-card__view" data-project="2" aria-label="Lihat detail">View
+                                    Details</button>
+                            </div>
+                        </div>
+                        <div class="project-card__body">
+                            <h3 class="project-card__title">CRUD Toko Laravel</h3>
+                            <p class="project-card__desc">Implementasi CRUD toko menggunakan Laravel.</p>
+                            <ul class="project-card__tech">
+                                <li>Laravel</li>
+                                <li>CRUD</li>
+                                <li>PowerPoint</li>
+                            </ul>
+                            <div class="project-card__links">
+                                <a href="assets/material/Autentikasi/crud-toko-laravel.pptx" class="project-card__link"
+                                    download>Download</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="project-card" data-category="autentikasi" data-id="3">
+                        <div class="project-card__image">
+                            <img src="assets/icons/autentikasi/a.3.png" alt="Dokumentasi API Auth & CRUD Posts"
+                                loading="lazy" width="600" height="400">
+                            <div class="project-card__overlay">
+                                <button class="project-card__view" data-project="3" aria-label="Lihat detail">View
+                                    Details</button>
+                            </div>
+                        </div>
+                        <div class="project-card__body">
+                            <h3 class="project-card__title">API Auth & CRUD Posts</h3>
+                            <p class="project-card__desc">Dokumentasi lengkap API Authentication + CRUD Posts.</p>
+                            <ul class="project-card__tech">
+                                <li>API</li>
+                                <li>Auth</li>
+                                <li>CRUD</li>
+                            </ul>
+                            <div class="project-card__links">
+                                <a href="assets/material/Autentikasi/API_Auth _CRUD_Posts.pptx"
+                                    class="project-card__link" download>Download</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="project-card" data-category="autentikasi" data-id="4">
+                        <div class="project-card__image">
+                            <img src="assets/icons/autentikasi/a.2.png" alt="JWT Autentikasi API" loading="lazy"
+                                width="600" height="400">
+                            <div class="project-card__overlay">
+                                <button class="project-card__view" data-project="4" aria-label="Lihat detail">View
+                                    Details</button>
+                            </div>
+                        </div>
+                        <div class="project-card__body">
+                            <h3 class="project-card__title">JWT Autentikasi API</h3>
+                            <p class="project-card__desc">Materi JSON Web Token (JWT) untuk autentikasi API.</p>
+                            <ul class="project-card__tech">
+                                <li>JWT</li>
+                                <li>API</li>
+                                <li>Auth</li>
+                            </ul>
+                            <div class="project-card__links">
+                                <a href="assets/material/Autentikasi/JWT_Autentikasi_API.pptx"
+                                    class="project-card__link" download>Download</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="project-card" data-category="autentikasi" data-id="5">
+                        <div class="project-card__image">
+                            <img src="assets/icons/autentikasi/a.1.png" alt="Laravel API CRUD Sanctum" loading="lazy"
+                                width="600" height="400">
+                            <div class="project-card__overlay">
+                                <button class="project-card__view" data-project="5" aria-label="Lihat detail">View
+                                    Details</button>
+                            </div>
+                        </div>
+                        <div class="project-card__body">
+                            <h3 class="project-card__title">Laravel API CRUD Sanctum</h3>
+                            <p class="project-card__desc">Tutorial Laravel API CRUD menggunakan Laravel Sanctum.</p>
+                            <ul class="project-card__tech">
+                                <li>Laravel</li>
+                                <li>Sanctum</li>
+                                <li>API</li>
+                            </ul>
+                            <div class="project-card__links">
+                                <a href="assets/material/Autentikasi/Laravel_API_CRUD_Sanctum_Tutorial.pptx"
+                                    class="project-card__link" download>Download</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="project-card" data-category="autentikasi" data-id="6">
+                        <div class="project-card__image">
+                            <img src="assets/icons/autentikasi/a.6.png" alt="OAuth2 Autentikasi API" loading="lazy"
+                                width="600" height="400">
+                            <div class="project-card__overlay">
+                                <button class="project-card__view" data-project="6" aria-label="Lihat detail">View
+                                    Details</button>
+                            </div>
+                        </div>
+                        <div class="project-card__body">
+                            <h3 class="project-card__title">OAuth2 Autentikasi API</h3>
+                            <p class="project-card__desc">Materi OAuth 2.0 untuk autentikasi API.</p>
+                            <ul class="project-card__tech">
+                                <li>OAuth2</li>
+                                <li>API</li>
+                                <li>Auth</li>
+                            </ul>
+                            <div class="project-card__links">
+                                <a href="assets/material/Autentikasi/OAuth2_Autentikasi_API.pptx"
+                                    class="project-card__link" download>Download</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- ==================== DATABASE ==================== -->
+                    <article class="project-card" data-category="database" data-id="7">
+                        <div class="project-card__image">
+                            <img src="assets/icons/database/d1.png" alt="CRUD Laravel" loading="lazy" width="600"
+                                height="400">
+                            <div class="project-card__overlay">
+                                <button class="project-card__view" data-project="7" aria-label="Lihat detail">View
+                                    Details</button>
+                            </div>
+                        </div>
+                        <div class="project-card__body">
+                            <h3 class="project-card__title">CRUD Laravel</h3>
+                            <p class="project-card__desc">Materi dasar CRUD menggunakan Laravel.</p>
+                            <ul class="project-card__tech">
+                                <li>Laravel</li>
+                                <li>CRUD</li>
+                                <li>Database</li>
+                            </ul>
+                            <div class="project-card__links">
+                                <a href="assets/material/database/CRUD_Laravel.pptx" class="project-card__link"
+                                    download>Download</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="project-card" data-category="database" data-id="8">
+                        <div class="project-card__image">
+                            <img src="assets/icons/database/d2.png" alt="Langkah-langkah CRUD Laravel" loading="lazy"
+                                width="600" height="400">
+                            <div class="project-card__overlay">
+                                <button class="project-card__view" data-project="8" aria-label="Lihat detail">View
+                                    Details</button>
+                            </div>
+                        </div>
+                        <div class="project-card__body">
+                            <h3 class="project-card__title">Langkah-langkah CRUD Laravel</h3>
+                            <p class="project-card__desc">Panduan step-by-step membuat CRUD di Laravel.</p>
+                            <ul class="project-card__tech">
+                                <li>Laravel</li>
+                                <li>CRUD</li>
+                                <li>Tutorial</li>
+                            </ul>
+                            <div class="project-card__links">
+                                <a href="assets/material/database/Langkah_Langkah_CRUD_Laravel.pptx"
+                                    class="project-card__link" download>Download</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="project-card" data-category="database" data-id="9">
+                        <div class="project-card__image">
+                            <img src="assets/icons/database/d3.png" alt="Normalization Database" loading="lazy"
+                                width="600" height="400">
+                            <div class="project-card__overlay">
+                                <button class="project-card__view" data-project="9" aria-label="Lihat detail">View
+                                    Details</button>
+                            </div>
+                        </div>
+                        <div class="project-card__body">
+                            <h3 class="project-card__title">Normalization Database</h3>
+                            <p class="project-card__desc">Materi normalisasi database (1NF, 2NF, 3NF, dll).</p>
+                            <ul class="project-card__tech">
+                                <li>Database</li>
+                                <li>Normalization</li>
+                                <li>SQL</li>
+                            </ul>
+                            <div class="project-card__links">
+                                <a href="assets/material/database/Normalization_Database.pptx"
+                                    class="project-card__link" download>Download</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="project-card" data-category="database" data-id="10">
+                        <div class="project-card__image">
+                            <img src="assets/icons/database/d4.png" alt="Query SQL" loading="lazy" width="600"
+                                height="400">
+                            <div class="project-card__overlay">
+                                <button class="project-card__view" data-project="10" aria-label="Lihat detail">View
+                                    Details</button>
+                            </div>
+                        </div>
+                        <div class="project-card__body">
+                            <h3 class="project-card__title">Query SQL</h3>
+                            <p class="project-card__desc">Materi dasar sampai lanjutan Query SQL.</p>
+                            <ul class="project-card__tech">
+                                <li>SQL</li>
+                                <li>Database</li>
+                                <li>Query</li>
+                            </ul>
+                            <div class="project-card__links">
+                                <a href="assets/material/database/Query_SQL.pptx" class="project-card__link"
+                                    download>Download</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- ==================== FUNDAMENTAL ==================== -->
+                    <article class="project-card" data-category="fundamental" data-id="11">
+                        <div class="project-card__image">
+                            <img src="assets/icons/fundamental/f1.png" alt="Roadmap Backend" loading="lazy" width="600"
+                                height="400">
+                            <div class="project-card__overlay">
+                                <button class="project-card__view" data-project="11" aria-label="Lihat detail">View
+                                    Details</button>
+                            </div>
+                        </div>
+                        <div class="project-card__body">
+                            <h3 class="project-card__title">Roadmap Backend</h3>
+                            <p class="project-card__desc">Roadmap lengkap belajar Backend Development.</p>
+                            <ul class="project-card__tech">
+                                <li>Backend</li>
+                                <li>Roadmap</li>
+                                <li>PowerPoint</li>
+                            </ul>
+                            <div class="project-card__links">
+                                <a href="assets/material/fundamental/Roadmap_Backend.pptx" class="project-card__link"
+                                    download>Download</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- ==================== OOP ==================== -->
+                    <article class="project-card" data-category="oop" data-id="12">
+                        <div class="project-card__image">
+                            <img src="assets/icons/oop/o1.png" alt="OOP Backend Architecture Notes" loading="lazy"
+                                width="600" height="400">
+                            <div class="project-card__overlay">
+                                <button class="project-card__view" data-project="12" aria-label="Lihat detail">View
+                                    Details</button>
+                            </div>
+                        </div>
+                        <div class="project-card__body">
+                            <h3 class="project-card__title">OOP Backend Architecture Notes</h3>
+                            <p class="project-card__desc">Catatan arsitektur backend berbasis Object-Oriented
+                                Programming.</p>
+                            <ul class="project-card__tech">
+                                <li>OOP</li>
+                                <li>Backend</li>
+                                <li>Markdown</li>
+                            </ul>
+                            <div class="project-card__links">
+                                <a href="assets/material/OOP/oop-backend-architecture-notes.md"
+                                    class="project-card__link" download>Download</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- ==================== PYTHON ==================== -->
+                    <article class="project-card" data-category="python" data-id="13">
+                        <div class="project-card__image">
+                            <img src="assets/icons/pythone/p1.png" alt="Python Sesi 1" loading="lazy" width="600"
+                                height="400">
+                            <div class="project-card__overlay">
+                                <button class="project-card__view" data-project="13" aria-label="Lihat detail">View
+                                    Details</button>
+                            </div>
+                        </div>
+                        <div class="project-card__body">
+                            <h3 class="project-card__title">Python Sesi 1 – UPT TIKP JATIM</h3>
+                            <p class="project-card__desc">Materi Python sesi 1 dari UPT TIKP Jawa Timur.</p>
+                            <ul class="project-card__tech">
+                                <li>Python</li>
+                                <li>PDF</li>
+                                <li>Dasar</li>
+                            </ul>
+                            <div class="project-card__links">
+                                <a href="assets/material/phyton/Python Sesi 1 UPT TIKP JATIM.pdf"
+                                    class="project-card__link" download>Download</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="project-card" data-category="python" data-id="14">
+                        <div class="project-card__image">
+                            <img src="assets/icons/pythone/p2.png" alt="Python Sesi 2" loading="lazy" width="600"
+                                height="400">
+                            <div class="project-card__overlay">
+                                <button class="project-card__view" data-project="14" aria-label="Lihat detail">View
+                                    Details</button>
+                            </div>
+                        </div>
+                        <div class="project-card__body">
+                            <h3 class="project-card__title">Python Sesi 2 – UPT TIKP JATIM</h3>
+                            <p class="project-card__desc">Materi Python sesi 2 dari UPT TIKP Jawa Timur.</p>
+                            <ul class="project-card__tech">
+                                <li>Python</li>
+                                <li>PDF</li>
+                            </ul>
+                            <div class="project-card__links">
+                                <a href="assets/material/phyton/Python Sesi 2 UPT TIKP JATIM.pdf"
+                                    class="project-card__link" download>Download</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="project-card" data-category="python" data-id="15">
+                        <div class="project-card__image">
+                            <img src="assets/icons/pythone/p3.png" alt="Python Sesi 3" loading="lazy" width="600"
+                                height="400">
+                            <div class="project-card__overlay">
+                                <button class="project-card__view" data-project="15" aria-label="Lihat detail">View
+                                    Details</button>
+                            </div>
+                        </div>
+                        <div class="project-card__body">
+                            <h3 class="project-card__title">Python Sesi 3 – UPT TIKP JATIM</h3>
+                            <p class="project-card__desc">Materi Python sesi 3 dari UPT TIKP Jawa Timur.</p>
+                            <ul class="project-card__tech">
+                                <li>Python</li>
+                                <li>PDF</li>
+                            </ul>
+                            <div class="project-card__links">
+                                <a href="assets/material/phyton/Python Sesi 3 UPT TIKP JATIM.pdf"
+                                    class="project-card__link" download>Download</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- ==================== REST ==================== -->
+                    <article class="project-card" data-category="rest" data-id="16">
+                        <div class="project-card__image">
+                            <img src="assets/icons/rest/r1.png" alt="HTTP Penjelasan" loading="lazy" width="600"
+                                height="400">
+                            <div class="project-card__overlay">
+                                <button class="project-card__view" data-project="16" aria-label="Lihat detail">View
+                                    Details</button>
+                            </div>
+                        </div>
+                        <div class="project-card__body">
+                            <h3 class="project-card__title">HTTP Penjelasan</h3>
+                            <p class="project-card__desc">Penjelasan lengkap tentang protokol HTTP.</p>
+                            <ul class="project-card__tech">
+                                <li>HTTP</li>
+                                <li>REST</li>
+                                <li>API</li>
+                            </ul>
+                            <div class="project-card__links">
+                                <a href="assets/material/REST/HTTP_Penjelasan.pptx" class="project-card__link"
+                                    download>Download</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="project-card" data-category="rest" data-id="17">
+                        <div class="project-card__image">
+                            <img src="assets/icons/rest/r2.png" alt="JSON REST API" loading="lazy" width="600"
+                                height="400">
+                            <div class="project-card__overlay">
+                                <button class="project-card__view" data-project="17" aria-label="Lihat detail">View
+                                    Details</button>
+                            </div>
+                        </div>
+                        <div class="project-card__body">
+                            <h3 class="project-card__title">JSON REST API</h3>
+                            <p class="project-card__desc">Materi tentang format JSON dalam REST API.</p>
+                            <ul class="project-card__tech">
+                                <li>JSON</li>
+                                <li>REST</li>
+                                <li>API</li>
+                            </ul>
+                            <div class="project-card__links">
+                                <a href="assets/material/REST/JSON_REST_API.pptx" class="project-card__link"
+                                    download>Download</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="project-card" data-category="rest" data-id="18">
+                        <div class="project-card__image">
+                            <img src="assets/icons/rest/r3.png" alt="Request Response" loading="lazy" width="600"
+                                height="400">
+                            <div class="project-card__overlay">
+                                <button class="project-card__view" data-project="18" aria-label="Lihat detail">View
+                                    Details</button>
+                            </div>
+                        </div>
+                        <div class="project-card__body">
+                            <h3 class="project-card__title">Request & Response</h3>
+                            <p class="project-card__desc">Penjelasan Request dan Response dalam REST API.</p>
+                            <ul class="project-card__tech">
+                                <li>REST</li>
+                                <li>HTTP</li>
+                                <li>API</li>
+                            </ul>
+                            <div class="project-card__links">
+                                <a href="assets/material/REST/Request_Response.pptx" class="project-card__link"
+                                    download>Download</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="project-card" data-category="rest" data-id="19">
+                        <div class="project-card__image">
+                            <img src="assets/icons/rest/r4.png" alt="REST API Endpoint" loading="lazy" width="600"
+                                height="400">
+                            <div class="project-card__overlay">
+                                <button class="project-card__view" data-project="19" aria-label="Lihat detail">View
+                                    Details</button>
+                            </div>
+                        </div>
+                        <div class="project-card__body">
+                            <h3 class="project-card__title">REST API Endpoint</h3>
+                            <p class="project-card__desc">Materi tentang Endpoint di REST API.</p>
+                            <ul class="project-card__tech">
+                                <li>REST</li>
+                                <li>Endpoint</li>
+                                <li>API</li>
+                            </ul>
+                            <div class="project-card__links">
+                                <a href="assets/material/REST/REST_API_Endpoint.pptx" class="project-card__link"
+                                    download>Download</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="project-card" data-category="rest" data-id="20">
+                        <div class="project-card__image">
+                            <img src="assets/icons/rest/r5.png" alt="Status Code REST API" loading="lazy" width="600"
+                                height="400">
+                            <div class="project-card__overlay">
+                                <button class="project-card__view" data-project="20" aria-label="Lihat detail">View
+                                    Details</button>
+                            </div>
+                        </div>
+                        <div class="project-card__body">
+                            <h3 class="project-card__title">Status Code REST API</h3>
+                            <p class="project-card__desc">Penjelasan HTTP Status Code yang umum digunakan di REST API.
+                            </p>
+                            <ul class="project-card__tech">
+                                <li>Status Code</li>
+                                <li>HTTP</li>
+                                <li>REST</li>
+                            </ul>
+                            <div class="project-card__links">
+                                <a href="assets/material/REST/Status_Code_REST_API.pptx" class="project-card__link"
+                                    download>Download</a>
+                            </div>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Project Modal (tetap sama) -->
+        <div class="modal" id="project-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
+            <div class="modal__backdrop" data-close-modal></div>
+            <div class="modal__content">
+                <button class="modal__close" data-close-modal aria-label="Tutup modal">&times;</button>
+                <div class="modal__body" id="modal-body">
+                    <!-- Diisi oleh JavaScript -->
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== LEAVE A NOTE ==================== -->
+        <section id="notes" class="notes section" aria-labelledby="notes-title">
+            <div class="container">
+                <header class="section__header">
+                    <p class="section__subtitle">PUBLIC WALL</p>
+                    <h2 id="notes-title" class="section__title">Leave a Note</h2>
+                    <p class="section__desc">Tinggalkan pesan, saran, atau sekadar menyapa. Siapa saja boleh menulis dan
+                        membalas.</p>
+                </header>
+
+                <div class="notes__layout">
+                    <!-- LEFT: Notes Feed -->
+                    <div class="notes__feed">
+                        <div class="notes__feed-header">
+                            <h3 class="notes__feed-title">
+                                <span class="notes__live-dot"></span>
+                                Public Notes
+                            </h3>
+                            <span class="notes__count" id="notes-count">0 catatan</span>
+                        </div>
+
+                        <div class="notes__list" id="notes-list">
+                            <!-- Notes will be injected here by JS -->
+                        </div>
+                    </div>
+
+                    <!-- RIGHT: Form -->
+                    <div class="notes__form-wrapper">
+                        <div class="notes__form-card">
+                            <div class="notes__form-header">
+                                <h3 class="notes__form-title" id="form-title">Tulis Catatan</h3>
+                                <p class="notes__form-subtitle" id="form-subtitle">Pesanmu akan tampil di sisi kiri</p>
+                            </div>
+
+                            <!-- Reply indicator -->
+                            <div class="notes__replying" id="replying-to" hidden>
+                                <div class="notes__replying-content">
+                                    <span>Membalas <strong id="reply-name"></strong></span>
+                                    <button type="button" class="notes__cancel-reply" id="cancel-reply"
+                                        aria-label="Batalkan balasan">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2">
+                                            <line x1="18" y1="6" x2="6" y2="18" />
+                                            <line x1="6" y1="6" x2="18" y2="18" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <form class="notes__form" id="note-form" novalidate>
+                                <div class="form-group">
+                                    <label for="note-name">Nama</label>
+                                    <input type="text" id="note-name" name="name"
+                                        placeholder="Tuliskan Nama Anda(expl.fahri)" maxlength="40" required
+                                        autocomplete="name">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="note-message">Catatan</label>
+                                    <textarea id="note-message" name="message"
+                                        placeholder="(Tuliskan sesuatu yang sopan dan profesional)" rows="5"
+                                        maxlength="500" required></textarea>
+                                    <div class="form-meta">
+                                        <span class="char-count"><span id="char-current">0</span>/500</span>
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="btn btn--primary notes__submit-btn" id="submit-btn">
+                                    <span class="btn-text">Send Note</span>
+                                    <span class="btn-loading" hidden>
+                                        <svg class="spinner" width="20" height="20" viewBox="0 0 24 24">
+                                            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3"
+                                                fill="none" stroke-dasharray="30 70" />
+                                        </svg>
+                                    </span>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Toast Notification -->
+        <div class="toast" id="toast" role="status" aria-live="polite" hidden>
+            <div class="toast__content">
+                <span class="toast__icon">✓</span>
+                <span class="toast__message" id="toast-message">Catatan berhasil dikirim!</span>
+            </div>
+        </div>
+
+        <!-- ==================== STATISTICS ==================== -->
+        <section id="statistics" class="statistics section" aria-labelledby="statistics-title">
+            <div class="container">
+                <header class="section__header section__header--center">
+                    <p class="section__subtitle">In numbers</p>
+                    <h2 id="statistics-title" class="section__title">Statistics</h2>
+                </header>
+
+                <div class="statistics__grid">
+                    <div class="stat-item">
+                        <span class="stat-item__number" data-target="20">0</span>
+                        <span class="stat-item__suffix">+</span>
+                        <span class="stat-item__label">Projects Completed</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-item__number" data-target="10">0</span>
+                        <span class="stat-item__suffix">+</span>
+                        <span class="stat-item__label">Technologies</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-item__number" data-target="5">0</span>
+                        <span class="stat-item__suffix">+</span>
+                        <span class="stat-item__label">Certificates</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-item__number" data-target="100">0</span>
+                        <span class="stat-item__suffix">%</span>
+                        <span class="stat-item__label">Learning Passion</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== TESTIMONIALS ==================== -->
+        <section id="testimonials" class="testimonials section" aria-labelledby="testimonials-title">
+            <div class="container">
+                <header class="section__header section__header--center">
+                    <p class="section__subtitle">What people say</p>
+                    <h2 id="testimonials-title" class="section__title">Testimonials</h2>
+                </header>
+
+                <div class="testimonials__slider" id="testimonials-slider">
+                    <div class="testimonials__track">
+                        <article class="testimonial-card is-active">
+                            <blockquote class="testimonial-card__quote">
+                                “Kerja sama yang sangat menyenangkan. Website yang dihasilkan clean, cepat, dan sesuai
+                                brief. Komunikasi juga sangat baik.”
+                            </blockquote>
+                            <div class="testimonial-card__author">
+                                <div class="testimonial-card__avatar" aria-hidden="true">AS</div>
+                                <div>
+                                    <cite class="testimonial-card__name">Andi Saputra</cite>
+                                    <span class="testimonial-card__role">Founder, Startup Local</span>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="testimonial-card">
+                            <blockquote class="testimonial-card__quote">
+                                “Detail-oriented dan selalu memberikan saran yang berguna. Hasil akhir melebihi
+                                ekspektasi saya.”
+                            </blockquote>
+                            <div class="testimonial-card__author">
+                                <div class="testimonial-card__avatar" aria-hidden="true">MT</div>
+                                <div>
+                                    <cite class="testimonial-card__name">Moh Tiar</cite>
+                                    <span class="testimonial-card__role">UI/UX Designer</span>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="testimonial-card">
+                            <blockquote class="testimonial-card__quote">
+                                “Responsif, profesional, dan kode yang rapi. Sangat recommended untuk project website
+                                modern.”
+                            </blockquote>
+                            <div class="testimonial-card__author">
+                                <div class="testimonial-card__avatar" aria-hidden="true">AN</div>
+                                <div>
+                                    <cite class="testimonial-card__name">Ayu Nidya</cite>
+                                    <span class="testimonial-card__role">Product Manager</span>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+
+                    <div class="testimonials__controls">
+                        <button class="testimonials__btn testimonials__btn--prev" aria-label="Testimonial sebelumnya">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M15 18l-6-6 6-6" />
+                            </svg>
+                        </button>
+                        <div class="testimonials__dots" role="tablist" aria-label="Indikator testimonial">
+                            <button class="testimonials__dot active" data-index="0" role="tab" aria-selected="true"
+                                aria-label="Testimonial 1"></button>
+                            <button class="testimonials__dot" data-index="1" role="tab" aria-selected="false"
+                                aria-label="Testimonial 2"></button>
+                            <button class="testimonials__dot" data-index="2" role="tab" aria-selected="false"
+                                aria-label="Testimonial 3"></button>
+                        </div>
+                        <button class="testimonials__btn testimonials__btn--next" aria-label="Testimonial selanjutnya">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M9 18l6-6-6-6" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== CONTACT ==================== -->
+        <section id="contact" class="contact section" aria-labelledby="contact-title">
+            <div class="container">
+                <header class="section__header">
+                    <p class="section__subtitle">Get in touch</p>
+                    <h2 id="contact-title" class="section__title">Contact</h2>
+                </header>
+
+                <div class="contact__grid">
+                    <div class="contact__info">
+                        <p class="contact__intro">
+                            Tertarik untuk bekerja sama atau hanya ingin menyapa? Silakan hubungi saya melalui form atau
+                            channel di bawah.
+                        </p>
+
+                        <ul class="contact__list">
+                            <li class="contact__item">
+                                <span class="contact__icon" aria-hidden="true">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="1.5">
+                                        <path
+                                            d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                                        <path d="M22 6l-10 7L2 6" />
+                                    </svg>
+                                </span>
+                                <div>
+                                    <span class="contact__label">Email</span>
+                                    <a href="mailto:hello@example.com">afkarafnani57@gmail.com</a>
+                                </div>
+                            </li>
+                            <li class="contact__item">
+                                <span class="contact__icon" aria-hidden="true">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="1.5">
+                                        <path
+                                            d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
+                                    </svg>
+                                </span>
+                                <div>
+                                    <span class="contact__label">WhatsApp</span>
+                                    <a href="https://wa.me/6281334131755" target="_blank" rel="noopener noreferrer">+62
+                                        813-3413-1755</a>
+                                </div>
+                            </li>
+                            <li class="contact__item">
+                                <span class="contact__icon" aria-hidden="true">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                        <path
+                                            d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+                                    </svg>
+                                </span>
+                                <div>
+                                    <span class="contact__label">Instagram</span>
+                                    <a href="https://instagram.com/" target="_blank"
+                                        rel="noopener noreferrer">@rxl.gnn</a>
+                                </div>
+                            </li>
+                            <li class="contact__item">
+                                <span class="contact__icon" aria-hidden="true">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                        <path
+                                            d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.387.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.09-.745.083-.73.083-.73 1.205.085 1.84 1.237 1.84 1.237 1.07 1.834 2.807 1.304 3.492.997.108-.775.418-1.305.76-1.605-2.665-.305-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.605-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12z" />
+                                    </svg>
+                                </span>
+                                <div>
+                                    <span class="contact__label">GitHub</span>
+                                    <a href="https://github.com/mafkarafnanis22-png" target="_blank"
+                                        rel="noopener noreferrer">github.com/mafkarafnani22-png</a>
+                                </div>
+                            </li>
+                            <li class="contact__item">
+                                <span class="contact__icon" aria-hidden="true">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="1.5">
+                                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+                                        <circle cx="12" cy="10" r="3" />
+                                    </svg>
+                                </span>
+                                <div>
+                                    <span class="contact__label">Location</span>
+                                    <span>Indonesia</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <form class="contact__form" id="contact-form" novalidate>
+                        <div class="form-group">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" id="name" name="name" class="form-input" placeholder="Your name" required
+                                autocomplete="name">
+                            <span class="form-error" id="name-error" role="alert"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" id="email" name="email" class="form-input" placeholder="your@email.com"
+                                required autocomplete="email">
+                            <span class="form-error" id="email-error" role="alert"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subject" class="form-label">Subject</label>
+                            <input type="text" id="subject" name="subject" class="form-input" placeholder="Subject"
+                                required>
+                            <span class="form-error" id="subject-error" role="alert"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message" class="form-label">Message</label>
+                            <textarea id="message" name="message" class="form-textarea" rows="5"
+                                placeholder="Your message..." required></textarea>
+                            <span class="form-error" id="message-error" role="alert"></span>
+                        </div>
+
+                        <button type="submit" class="btn btn--primary btn--full" id="submit-btn">
+                            Send Message
+                        </button>
+                        <div id="form-status" class="form-status" hidden></div>
+                        <div class="form-status" id="form-status" role="status" aria-live="polite" hidden></div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer">
+        <div class="container footer__container">
+            <div class="footer__top">
+                <a href="#home" class="footer__logo">
+                    <span class="logo-text">Avgan<span class="logo-accent">.</span></span>
+                </a>
+
+                <nav class="footer__nav" aria-label="Footer navigation">
+                    <a href="#home">Home</a>
+                    <a href="#about">About</a>
+                    <a href="#projects">Resources</a>
+                    <a href="#notes">Notes</a>
+                </nav>
+
+                <div class="footer__social">
+                    <a href="https://github.com/mafkarafnanis22-png" target="_blank" rel="noopener noreferrer"
+                        class="hero__social-link" aria-label="GitHub">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <path
+                                d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.387.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.09-.745.083-.73.083-.73 1.205.085 1.84 1.237 1.84 1.237 1.07 1.834 2.807 1.304 3.492.997.108-.775.418-1.305.76-1.605-2.665-.305-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.605-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12z" />
+                        </svg>
+                    </a>
+                    <a href="https://www.instagram.com/rxl.gnn?stkn=MTBxb3RsdG9saGd6dQ==" target="_blank"
+                        rel="noopener noreferrer" class="hero__social-link" aria-label="Instagram">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <path
+                                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+                        </svg>
+                    </a>
+                    <a href="https://www.tiktok.com/@mafkarafnanis?_r=1&_t=ZS-9ANveEdm55w" target="_blank"
+                        rel="noopener noreferrer" class="hero__social-link" aria-label="TikTok">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <path
+                                d="M12.525.02c1.31-.02 2.61-.01 3.91-.02c.08 1.53.63 3.09 1.75 4.17c1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97c-.57-.26-1.1-.59-1.62-.93c-.01 2.92.01 5.84-.02 8.75c-.08 1.4-.54 2.79-1.35 3.94c-1.31 1.92-3.58 3.17-5.91 3.21c-1.43.08-2.86-.31-4.08-1.03c-2.02-1.19-3.44-3.37-3.65-5.71c-.02-.5-.03-1-.01-1.49c.18-1.9 1.12-3.72 2.58-4.96c1.66-1.44 3.98-2.13 6.15-1.72c.02 1.48-.04 2.96-.04 4.44c-.99-.32-2.15-.23-3.02.37c-.63.41-1.11 1.04-1.36 1.75c-.21.51-.15 1.07-.14 1.61c.24 1.64 1.82 3.02 3.5 2.87c1.12-.01 2.19-.66 2.77-1.61c.19-.33.4-.67.41-1.06c.1-1.79.06-3.57.07-5.36c.01-4.03-.01-8.05.02-12.07" />
+                        </svg>
+                    </a>
+                    <a href="afkarafnani57@gmail.com" class="hero__social-link" aria-label="Email">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <path
+                                d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer__bottom">
+                <p class="footer__copyright">
+                    &copy; <span id="current-year"></span> mafkarafnanis. All rights reserved.
+                </p>
+                <button class="footer__back-to-top" id="back-to-top" aria-label="Kembali ke atas">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 15l-6-6-6 6" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/main.js" defer></script>
+    <script src="js/animations.js" defer></script>
+    <script src="js/projects.js" defer></script>
+    <script src="js/contact.js" defer></script>
+    <script src="js/notes.js" defer></script>
+    <script src="js/face.js" defer></script>
+</body>
+
+</html>
