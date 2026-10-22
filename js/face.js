@@ -288,7 +288,7 @@
     running = true;
     resize();
     statusEl.textContent = '';
-    setMsg('Memuat model…');
+    setMsg('Melacak server………');
     try {
       if (!ready) await setupModels();
       faceLm = []; handLm = [];
