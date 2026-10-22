@@ -1,11 +1,24 @@
 /* =====================================================
    NOTES.JS - Public Leave a Note + Reply System
+   Menggunakan Firebase Firestore + Auth (admin)
    ===================================================== */
 
 (function () {
     "use strict";
 
-    const STORAGE_KEY = "afgn_public_notes";
+    const firebaseConfig = {
+        apiKey: "AIzaSyBEIuoz6kjsRee3V2rUbXZwiAXO4jB6dSg",
+        authDomain: "afgan-id.firebaseapp.com",
+        projectId: "afgan-id",
+        storageBucket: "afgan-id.firebasestorage.app",
+        messagingSenderId: "534933383721",
+        appId: "1:534933383721:web:c8a78e8f821a4495c30a38",
+        measurementId: "G-YJSRDREDFP"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+    const NOTES_COLLECTION = "public_notes";
 
     // DOM
     const notesList = document.getElementById("notes-list");
@@ -27,12 +40,13 @@
 
     let notes = [];
     let replyToId = null;
+    let unsubscribe = null;
+
+    let isAdmin = false;
+    const ADMIN_EMAIL = "admin@gmail.com"; // ganti dengan email admin kamu
+    const isEmail = (s) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s);
 
     /* ---------- Helpers ---------- */
-    function generateId() {
-        return Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
-    }
-
     function getInitials(name) {
         return name
             .trim()
@@ -73,56 +87,52 @@
         return div.innerHTML;
     }
 
-    /* ---------- Storage ---------- */
-    function loadNotes() {
-        try {
-            const raw = localStorage.getItem(STORAGE_KEY);
-            notes = raw ? JSON.parse(raw) : [];
-        } catch {
-            notes = [];
-        }
-
-        // Pastikan catatan Owner selalu ada & disematkan di paling atas
-        ensureOwnerNote();
-    }
-
-    function ensureOwnerNote() {
+    /* ---------- Firebase ---------- */
+    async function ensureOwnerNote() {
         const OWNER_ID = "owner-afgan-pinned";
-        const existing = notes.find((n) => n.id === OWNER_ID);
+        const docRef = db.collection(NOTES_COLLECTION).doc(OWNER_ID);
+        const doc = await docRef.get();
 
-        if (!existing) {
-            notes.unshift({
+        if (!doc.exists) {
+            await docRef.set({
                 id: OWNER_ID,
                 name: "AFGAN",
                 message: "Halo semua selamat datang😁",
-                timestamp: Date.now() - 86400000, // 1 hari yang lalu agar terlihat natural
+                timestamp: Date.now() - 86400000,
                 isOwner: true,
                 isPinned: true,
                 replies: [],
             });
-            saveNotes();
-        } else {
-            // Pastikan properti owner tetap ada
-            existing.isOwner = true;
-            existing.isPinned = true;
-            existing.name = "AFGAN";
-            existing.message = "Halo semua selamat datang😁";
         }
     }
 
-    function saveNotes() {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(notes));
+    function loadNotesRealtime() {
+        if (unsubscribe) unsubscribe();
+        unsubscribe = db.collection(NOTES_COLLECTION)
+            .orderBy("timestamp", "desc")
+            .onSnapshot(async (snapshot) => {
+                const loadedNotes = snapshot.docs.map((doc) => ({
+                    ...doc.data(), id: doc.id, replies: []
+                }));
+                await Promise.all(loadedNotes.map(async (note) => {
+                    const rs = await db.collection(NOTES_COLLECTION).doc(note.id)
+                        .collection("replies").orderBy("timestamp", "asc").get();
+                    note.replies = rs.docs.map((r) => ({ ...r.data(), id: r.id }));
+                }));
+                notes = loadedNotes;
+                renderNotes();
+            }, (error) => {
+                console.error("Error loading notes:", error);
+                showToast("Gagal memuat catatan");
+            });
     }
 
     /* ---------- Render ---------- */
     function renderNotes() {
-        // Hapus semua card yang ada
         notesList.querySelectorAll(".note-card").forEach((c) => c.remove());
 
-        const total = notes.length;
-        notesCount.textContent = `${total} catatan`;
+        notesCount.textContent = `${notes.length} catatan`;
 
-        // Urutkan: pinned dulu, lalu terbaru
         const sorted = [...notes].sort((a, b) => {
             if (a.isPinned && !b.isPinned) return -1;
             if (!a.isPinned && b.isPinned) return 1;
@@ -150,12 +160,13 @@
                             <span class="reply-item__name">${escapeHTML(r.name)}</span>
                             <span class="reply-item__time">${timeAgo(r.timestamp)}</span>
                         </div>
+                        ${isAdmin ? `
                         <button class="note-delete-btn" data-delete-reply="${r.id}" data-parent="${note.id}" title="Hapus balasan" aria-label="Hapus balasan">
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <polyline points="3 6 5 6 21 6"></polyline>
                                 <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
                             </svg>
-                        </button>
+                        </button>` : ""}
                     </div>
                     <p class="reply-item__message">${escapeHTML(r.message)}</p>
                 </div>
@@ -183,7 +194,7 @@
                     </div>
                     <div class="note-card__time">${timeAgo(note.timestamp)}</div>
                 </div>
-                ${!note.isOwner
+                ${isAdmin && !note.isOwner
                 ? `<button class="note-delete-btn note-delete-btn--main" data-delete-note="${note.id}" title="Hapus catatan" aria-label="Hapus catatan">
                             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <polyline points="3 6 5 6 21 6"></polyline>
@@ -208,30 +219,74 @@
         return card;
     }
 
-    /* ---------- Delete Logic ---------- */
-    function deleteNote(id) {
-        // Jangan biarkan hapus owner note
+    /* ---------- Delete Logic (admin only) ---------- */
+    async function deleteNote(id) {
+        if (!isAdmin) return showToast("Hanya admin yang bisa menghapus");
         const note = notes.find((n) => n.id === id);
-        if (note && note.isOwner) {
-            showToast("Catatan Owner tidak bisa dihapus");
-            return;
+        if (note && note.isOwner) return showToast("Catatan Owner tidak bisa dihapus");
+        try {
+            // Firestore tidak otomatis menghapus subcollection
+            const rs = await db.collection(NOTES_COLLECTION).doc(id).collection("replies").get();
+            await Promise.all(rs.docs.map((d) => d.ref.delete()));
+            await db.collection(NOTES_COLLECTION).doc(id).delete();
+            showToast("Catatan dihapus");
+        } catch (err) {
+            console.error(err);
+            showToast("Gagal menghapus catatan");
         }
-
-        notes = notes.filter((n) => n.id !== id);
-        saveNotes();
-        renderNotes();
-        showToast("Catatan dihapus");
     }
 
-    function deleteReply(parentId, replyId) {
-        const parent = notes.find((n) => n.id === parentId);
-        if (!parent || !parent.replies) return;
-
-        parent.replies = parent.replies.filter((r) => r.id !== replyId);
-        saveNotes();
-        renderNotes();
-        showToast("Balasan dihapus");
+    async function deleteReply(parentId, replyId) {
+        if (!isAdmin) return showToast("Hanya admin yang bisa menghapus");
+        try {
+            await db.collection(NOTES_COLLECTION).doc(parentId)
+                .collection("replies").doc(replyId).delete();
+            showToast("Balasan dihapus");
+            loadNotesRealtime();
+        } catch (err) {
+            console.error("Delete reply error:", err);
+            showToast("Gagal menghapus balasan");
+        }
     }
+
+    /* ---------- Admin Login / Logout ---------- */
+    async function adminLogin(email, password) {
+        try {
+            await firebase.auth().signInWithEmailAndPassword(email, password);
+            showToast("Login admin berhasil");
+            return true;
+        } catch (error) {
+            console.error("Admin login error:", error);
+            showToast("Login admin gagal");
+            return false;
+        }
+    }
+
+    function adminLogout() {
+        firebase.auth().signOut().then(() => showToast("Logout berhasil"));
+    }
+
+    function updateAdminUI() {
+        let btn = document.getElementById("admin-logout-btn");
+        if (isAdmin && !btn) {
+            btn = document.createElement("button");
+            btn.id = "admin-logout-btn";
+            btn.type = "button";
+            btn.textContent = "Logout Admin";
+            btn.style.cssText = "margin-top:8px;padding:4px 10px;border-radius:8px;cursor:pointer;";
+            btn.addEventListener("click", adminLogout);
+            formSubtitle.after(btn);
+        } else if (!isAdmin && btn) {
+            btn.remove();
+        }
+    }
+
+    firebase.auth().onAuthStateChanged((user) => {
+        isAdmin = !!user && user.email === ADMIN_EMAIL;
+        updateAdminUI();
+        renderNotes();
+        if (isAdmin) ensureOwnerNote().catch(console.error);
+    });
 
     /* ---------- Form Logic ---------- */
     function setReplyMode(id, name) {
@@ -250,7 +305,6 @@
         formSubtitle.textContent = "Pesanmu akan tampil di sisi kiri";
     }
 
-    // Character counter
     messageInput.addEventListener("input", () => {
         const len = messageInput.value.length;
         charCurrent.textContent = len;
@@ -259,19 +313,15 @@
         counter.classList.toggle("danger", len > 480);
     });
 
-    // Cancel reply
     cancelReplyBtn.addEventListener("click", clearReplyMode);
 
-    // Event delegation untuk reply & delete
     notesList.addEventListener("click", (e) => {
-        // Reply
         const replyBtn = e.target.closest("[data-reply]");
         if (replyBtn) {
             setReplyMode(replyBtn.dataset.reply, replyBtn.dataset.name);
             return;
         }
 
-        // Delete note
         const deleteNoteBtn = e.target.closest("[data-delete-note]");
         if (deleteNoteBtn) {
             const id = deleteNoteBtn.dataset.deleteNote;
@@ -281,7 +331,6 @@
             return;
         }
 
-        // Delete reply
         const deleteReplyBtn = e.target.closest("[data-delete-reply]");
         if (deleteReplyBtn) {
             const replyId = deleteReplyBtn.dataset.deleteReply;
@@ -293,7 +342,7 @@
     });
 
     // Submit
-    form.addEventListener("submit", (e) => {
+    form.addEventListener("submit", async (e) => {
         e.preventDefault();
 
         const name = nameInput.value.trim();
@@ -304,99 +353,74 @@
             return;
         }
 
+        // ===== Mode login admin: Nama = email, Catatan = password =====
+        if (isEmail(name) && !replyToId) {
+            submitBtn.disabled = true;
+            const ok = await adminLogin(name, messageInput.value); // password tidak di-trim
+            submitBtn.disabled = false;
+            if (ok) {
+                form.reset();
+                charCurrent.textContent = "0";
+            }
+            return; // tidak pernah dikirim sebagai catatan
+        }
+
         submitBtn.disabled = true;
         btnText.hidden = true;
         btnLoading.hidden = false;
 
-        setTimeout(() => {
-            if (replyToId) {
-                const parent = notes.find((n) => n.id === replyToId);
-                if (parent) {
-                    if (!parent.replies) parent.replies = [];
-                    parent.replies.push({
-                        id: generateId(),
-                        name,
-                        message,
-                        timestamp: Date.now(),
-                    });
-                }
+        const isReplying = !!replyToId;
+        const currentReplyToId = replyToId;
+
+        try {
+            if (currentReplyToId) {
+                const replyRef = db
+                    .collection(NOTES_COLLECTION)
+                    .doc(currentReplyToId)
+                    .collection("replies")
+                    .doc();
+
+                await replyRef.set({
+                    id: replyRef.id,
+                    name,
+                    message,
+                    timestamp: Date.now()
+                });
+
+                loadNotesRealtime();
             } else {
-                notes.push({
-                    id: generateId(),
+                const newRef = db.collection(NOTES_COLLECTION).doc();
+
+                await newRef.set({
+                    id: newRef.id,
                     name,
                     message,
                     timestamp: Date.now(),
-                    replies: [],
+                    isOwner: false,
+                    isPinned: false,
+                    replies: []
                 });
             }
-
-            saveNotes();
-            renderNotes();
 
             form.reset();
             charCurrent.textContent = "0";
             clearReplyMode();
-
+            showToast(isReplying ? "Balasan berhasil dikirim!" : "Catatan berhasil dikirim!");
+            notesList.scrollTo({ top: 0, behavior: "smooth" });
+        } catch (err) {
+            console.error(err);
+            showToast("Gagal mengirim catatan");
+        } finally {
             submitBtn.disabled = false;
             btnText.hidden = false;
             btnLoading.hidden = true;
-
-            showToast(replyToId ? "Balasan berhasil dikirim!" : "Catatan berhasil dikirim!");
-            notesList.scrollTo({ top: 0, behavior: "smooth" });
-        }, 450);
-    });
-
-    /* ---------- Init ---------- */
-    loadNotes();
-    renderNotes();
-})();
-
-// SERTIF JS
-
-/* ===== AWARD MODAL ===== */
-(function () {
-    const modal = document.getElementById("award-modal");
-    const modalImg = document.getElementById("award-modal-img");
-    const modalTitle = document.getElementById("award-modal-title");
-    const modalDesc = document.getElementById("award-modal-desc");
-    const grid = document.getElementById("award-grid");
-
-    if (!modal || !grid) return;
-
-    function openModal(card) {
-        const img = card.querySelector("img");
-        const title = card.querySelector(".award-card__title");
-        const desc = card.querySelector(".award-card__desc");
-
-        modalImg.src = img.src;
-        modalImg.alt = img.alt;
-        modalTitle.textContent = title ? title.textContent : "";
-        modalDesc.textContent = desc ? desc.textContent : "";
-
-        modal.hidden = false;
-        document.body.style.overflow = "hidden";
-    }
-
-    function closeModal() {
-        modal.hidden = true;
-        document.body.style.overflow = "";
-    }
-
-    // Klik kartu atau tombol preview
-    grid.addEventListener("click", (e) => {
-        const card = e.target.closest("[data-award]");
-        if (card) openModal(card);
-    });
-
-    // Tutup modal
-    modal.addEventListener("click", (e) => {
-        if (e.target.hasAttribute("data-close-modal") || e.target.closest("[data-close-modal]")) {
-            closeModal();
         }
     });
 
-    // Tutup dengan Escape
-    document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape" && !modal.hidden) closeModal();
-    });
+    /* ---------- Init ---------- */
+    function init() {
+        loadNotesRealtime(); // tidak bergantung pada ensureOwnerNote
+    }
+
+    init();
 })();
